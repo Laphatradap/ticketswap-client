@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // export default function EventsList (props) {
 //   return (props.events.map(event =>
@@ -18,6 +18,7 @@ export default props => (
         <p>Description: {event.description}</p>
         <p>Start Date: {event.start_date}</p>
         <p>End Date: {event.end_date}</p>
+        <Link to={`/event/${event.id}`}><button>Check tickets</button></Link>
       </div>
     ))}
   </div>
