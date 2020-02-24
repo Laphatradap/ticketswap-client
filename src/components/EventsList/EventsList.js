@@ -1,14 +1,24 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from "react-router-dom";
 
-export default (props) => (
+// export default function EventsList (props) {
+//   return (props.events.map(event =>
+//   <h1>{event.name}</h1>
+//     <img src={event.picture} alt={event.name} />
+//   <p>{event.description}</p>
+//   ))
+// }
+
+export default props => (
   <div>
-  <ul>
     {props.events.map(event => (
-      <li key={event.id}>
-        <Link to={`/events/${event.id}`}>{event.name}</Link>
-      </li>
+      <div key={event.id}>
+        <img src={event.imgUrl} alt={event.name} />
+        <h1>{event.name}</h1>
+        <p>Description: {event.description}</p>
+        <p>Start Date: {event.start_date}</p>
+        <p>End Date: {event.end_date}</p>
+      </div>
     ))}
-  </ul>
   </div>
-)
+);

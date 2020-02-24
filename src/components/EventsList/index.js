@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { fetchEvents } from "../actions/eventsAction";
 import { connect } from "react-redux";
+import { fetchEvents } from "../../actions/events";
 import EventsList from "./EventsList";
 
 class EventsListContainer extends Component {
@@ -19,7 +19,7 @@ class EventsListContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("state of eventsListContainer", state);
+  console.log("state of eventsListContainer", state);
   return {events: state.events};
 };
 
