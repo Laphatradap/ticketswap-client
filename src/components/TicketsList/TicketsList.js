@@ -21,7 +21,7 @@ function TicketList (props) {
     <div>
       <h1>{props.event.name}</h1>
       {props.tickets.map(ticket => (
-        <div>
+        <div key={ticket.id}>
           <p>{ticket.sellerName}</p>
           <p>{ticket.price}</p>
           <p>{ticket.description}</p>

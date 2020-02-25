@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 // import { fetchTickets } from "../../actions/tickets";
-import { fetchEvent } from "../../actions/events"
-import { fetchTickets } from "../../actions/tickets"
+import { fetchEvent, fetchEvents } from "../../actions/events"
+// import { fetchTickets } from "../../actions/tickets"
 import TicketsList from "./TicketsList";
 
 class TicketsListContainer extends React.Component {
   componentDidMount() {
     console.log("props of TicketsListContainer", this.props);
     // this.props.fetchTickets()
+    this.props.fetchEvents()
     this.props.fetchEvent(Number(this.props.match.params.id));
-    this.props.fetchTickets()
+    // this.props.fetchTickets()
   }
 
   // renderTicket = (tickets, TicketComponent) => {
@@ -51,12 +52,13 @@ class TicketsListContainer extends React.Component {
 const mapStateToProps = state => {
   console.log("state of TicketListContainer", state);
   return {
-    event: state.event,
-    tickets: state.tickets
+    tickets: state.events.tickets,
+    event: state.event
+    // tickets: state.tickets
   };
 };
 
 export default connect(mapStateToProps, { 
-  fetchEvent,
-  fetchTickets
+  fetchEvents,
+  fetchEvent
 })(TicketsListContainer);
