@@ -19,7 +19,7 @@ class EventsListContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state of eventsListContainer", state);
+  // console.log("state of eventsListContainer", state);
   return {events: state.events};
 };
 

@@ -17,7 +17,7 @@ export const fetchEvents = () => (dispatch, getState) => {
   if(getState().events) return;
   request(`${baseUrl}/events`)
     .then(res => {
-      console.log("response body", res.body)
+      // console.log("response body", res.body)
       dispatch(eventsFetched(res.body))
     })
     .catch(console.error)
@@ -27,11 +27,11 @@ export const fetchEvents = () => (dispatch, getState) => {
 function eventFetched(event) {
   return {
     type: EVENT_FETCHED,
-    event
+    payload: event
   }
 }
 export const fetchEvent = id => (dispatch, getState) => {
-  request(`${baseUrl}/event/${id}`)
+  request(`${baseUrl}/events/${id}`)
     .then(res => {
       console.log("one event", res.body)
       dispatch(eventFetched(res.body))

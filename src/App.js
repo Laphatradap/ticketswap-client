@@ -6,7 +6,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login"
 // import Home from "./components/Home"
 import EventsListContainer from "./components/EventsList/index"
-import EventDetailsContainer from "./components/TicketsList/index"
+import TicketsListContainer from "./components/TicketsList/index"
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/" component={EventsListContainer} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/event/:id" component={EventDetailsContainer} />
+        <Route exact path="/events/:id" component={TicketsListContainer} />
       </Router>
     </div>
   );

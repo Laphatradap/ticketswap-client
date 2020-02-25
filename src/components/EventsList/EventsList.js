@@ -18,7 +18,7 @@ export default props => (
         <p>Description: {event.description}</p>
         <p>Start Date: {event.start_date}</p>
         <p>End Date: {event.end_date}</p>
-        <Link to={`/event/${event.id}`}><button>Check tickets</button></Link>
+        <Link to={`/events/${event.id}`}><button>Check tickets</button></Link>
       </div>
     ))}
   </div>
