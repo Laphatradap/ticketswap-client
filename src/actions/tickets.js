@@ -1,6 +1,7 @@
 import request from 'superagent'
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
+export const TICKET_FETCHED = 'TICKET_FETCHED'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -21,3 +22,22 @@ export const fetchTickets = () => (dispatch, getState) => {
     })
     .catch(console.error)
 }
+
+//Fetch one ticket
+function ticketFetched (ticket) {
+  return {
+    type: TICKET_FETCHED,
+    payload: ticket
+  }
+}
+
+export const fetchTicket = id => (dispatch, getState) => {
+  if(getState().tickets) return;
+  request(`${baseUrl}/tickets/${id}`)
+    .then(res => {
+      // console.log("response body", res.body)
+      dispatch(ticketFetched(res.body))
+    })
+    .catch(console.error)
+}
+

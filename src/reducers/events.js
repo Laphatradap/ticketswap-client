@@ -8,6 +8,7 @@ export default (state = null, action) => {
     case EVENTS_FETCHED:
       // console.log("action", action)
       return action.payload
+    
       
     default:
       return state;

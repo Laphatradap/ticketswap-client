@@ -1,4 +1,4 @@
-import { TICKETS_FETCHED } from "../actions/tickets";
+import { TICKETS_FETCHED, TICKET_FETCHED } from "../actions/tickets";
 
 export default (state = null, action) => {
   // console.log("state of events reducer", state);
@@ -7,6 +7,9 @@ export default (state = null, action) => {
   switch (action.type) {
     case TICKETS_FETCHED:
       // console.log("action", action)
+      return action.payload
+
+    case TICKET_FETCHED:
       return action.payload
       
     default:
