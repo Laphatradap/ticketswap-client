@@ -33,7 +33,7 @@ function eventFetched(event) {
 export const fetchEvent = id => (dispatch, getState) => {
   request(`${baseUrl}/events/${id}`)
     .then(res => {
-      console.log("one event", res.body)
+      // console.log("one event", res.body)
       dispatch(eventFetched(res.body))
     })
     .catch(console.error)
