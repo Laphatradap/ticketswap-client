@@ -9,16 +9,13 @@ export default function TicketsList(props) {
       {/* <TicketDetails ticketInfo={props.tickets}/> */}
       {props.tickets.map(ticket => (
         <div key={ticket.id}>
-          <p>Seller: {ticket.sellerName}</p>
+          {/* <p>Seller: {ticket.sellerName}</p> */}
           <p>Price: {ticket.price} euro </p>
-          <img src={ticket.imgUrl} alt={ticket.name} />
-          {/* <TicketDetails
-            name={ticket.sellerName}
-            price={ticket.price}
-            description={ticket.description}
-            img={ticket.imgUrl}
-          /> */}
-          <Link to={`/tickets/${ticket.id}`}>
+          <img src={ticket.imgUrl} alt={ticket.description} />
+          <p>{ticket.description}</p>
+            <Link to={`/tickets/${ticket.id}`}>
+
+          {/* <Link to={`/events/${props.eventId}/ticket/${ticket.id}/user/${ticket.userId}`}> */}
             <button>Check this ticket details</button>
           </Link>
         </div>

@@ -1,31 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchTicket } from "../../actions/tickets"
+// import { fetchTicket } from "../../actions/tickets"
+import { fetchTicket } from "../../actions/tickets";
 
 class TicketDetails extends React.Component {
   componentDidMount() {
-    this.props.fetchTicket(Number(this.props.match.params.id))
+    this.props.fetchTicket(Number(this.props.match.params.id));
   }
 
   render() {
-    if (!this.props.ticket) return "Loading..."; 
-    if(!this.props.event) return null;
-    
-    const { sellerName, price} = this.props.ticket
+    if (!this.props.ticket || !this.props.event) return "Loading...";
+    const { ticket, riskScore } = this.props.ticket;
     return (
       <div>
-        <h1>Ticket from {sellerName}</h1>
-        <p>Price: {price} euro</p>
-        <p> Risk: % </p>
+        <h1>Ticket from: {ticket.user.name} </h1>
+        <h2>Price: €{ticket.price}</h2>
+        <h3> We calculated that the risk of this ticket being fraudulent is: {riskScore}%</h3>
 
         <div>
-          <h2>Event Details:
-          {this.props.event.map(e => (
-            <div key={e.id}>
-              <p>{e.name}</p>
-              <img src={e.imgUrl} alt={e.name} />
-            </div>
-          ))}</h2>
+          <p>
+            Event Details:
+            {this.props.event.map(e => (
+              <div key={e.id}>
+                <p>{e.name}</p>
+                <p>{e.description}</p>
+                <img src={e.imgUrl} alt={e.name} />
+              </div>
+            ))}
+          </p>
         </div>
       </div>
     );
@@ -33,11 +35,12 @@ class TicketDetails extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state of TicketDetailContainer", state);
+  console.log("state of TicketDetailContainer", state.tickets);
   return {
     ticket: state.tickets,
     event: state.event
   };
 };
 
+// export default connect(mapStateToProps, { fetchTicket })(TicketDetails);
 export default connect(mapStateToProps, { fetchTicket })(TicketDetails);
