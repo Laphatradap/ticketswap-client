@@ -13,9 +13,9 @@ class TicketDetails extends React.Component {
     const { ticket, riskScore } = this.props.ticket;
     return (
       <div>
-        <h1>Ticket from: {ticket.user.name} </h1>
+        <h1>Ticket from: {ticket.user.username} </h1>
         <h2>Price: €{ticket.price}</h2>
-        <h3> We calculated that the risk of this ticket being fraudulent is: {riskScore}%</h3>
+        <h3> We calculated that the risk of this ticket being fraudulent is: {Math.round(riskScore)}%</h3>
 
         <div>
           <p>

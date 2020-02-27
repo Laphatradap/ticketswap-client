@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import CreateEventContainer from "../CreateEvent"
 // export default function EventsList (props) {
 //   return (props.events.map(event =>
 //   <h1>{event.name}</h1>
@@ -21,5 +21,8 @@ export default props => (
         <Link to={`/events/${event.id}`}><button>Check tickets</button></Link>
       </div>
     ))}
+    <br>
+    </br>
+    <CreateEventContainer />
   </div>
 );

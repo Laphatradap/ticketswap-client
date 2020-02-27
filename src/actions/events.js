@@ -2,6 +2,8 @@ import request from 'superagent'
 
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
 export const EVENT_FETCHED = 'EVENT_FETCHED'
+export const EVENT_CREATED = 'EVENT_CREATED'
+export const EVENT_UPDATED = 'EVENT_UPDATED'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -35,6 +37,39 @@ export const fetchEvent = id => (dispatch, getState) => {
     .then(res => {
       // console.log("one event", res.body)
       dispatch(eventFetched(res.body))
+    })
+    .catch(console.error)
+}
+
+//Create an event
+function eventCreated(event) {
+  return {
+    type: EVENT_CREATED,
+    payload: event
+  }
+}
+export const createEvent = (data) => (dispatch) => {
+  request
+    .post(`${baseUrl}/events`)
+    .send(data)
+    .then(res => {
+      dispatch(eventCreated(res.body))
+    })
+    .catch(console.error)
+}
+
+//update an event
+const eventUpdated = event => ({
+  type: EVENT_UPDATED,
+  event
+})
+
+export const updateEvent = (id, data) => dispatch => {
+  request
+    .put(`${baseUrl}/events/${id}`)
+    .send(data)
+    .then(res => {
+      dispatch(eventUpdated(res.body))
     })
     .catch(console.error)
 }
