@@ -22,8 +22,8 @@ class TicketDetails extends React.Component {
             Event Details:
             {this.props.event.map(e => (
               <div key={e.id}>
-                <p>{e.name}</p>
-                <p>{e.description}</p>
+                <div>{e.name}</div>
+                <div>{e.description}</div>
                 <img src={e.imgUrl} alt={e.name} />
               </div>
             ))}

@@ -8,10 +8,6 @@ function signUpSuccess() {
   return { type: USER_CREATED };
 }
 
-// function signUpFailure() {
-//   return { type: USER_NOT_CREATED}
-// }
-
 export function signUp(username, email, password) {
   return async function(dispatch, getState) {
     const response = await axios.post("http://localhost:4000/user", {
@@ -23,9 +19,6 @@ export function signUp(username, email, password) {
     if (response.status === 201) {
       dispatch(signUpSuccess());
     } 
-    // else if (response.status === 400) {
-    //   dispatch(signUpFailure())
-    // }
   };
 }
 
@@ -47,7 +40,7 @@ export function login(username, email, password, history) {
       email,
       password
     });
-    dispatch(loginSuccess(response.data.email, response.data.id, response.data.token)
+    dispatch(loginSuccess(response.data.token, response.data.email, response.data.id)
     );
     history.push("/events")
   };

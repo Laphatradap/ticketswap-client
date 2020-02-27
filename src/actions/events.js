@@ -48,7 +48,7 @@ function eventCreated(event) {
 }
 export const createEvent = (data) => (dispatch) => {
   request
-    .post(`${baseUrl}/events`)
+    .post(`${baseUrl}/newEvent`)
     .send(data)
     .then(res => {
       dispatch(eventCreated(res.body))

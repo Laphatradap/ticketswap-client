@@ -27,12 +27,12 @@ class LoginContainer extends Component {
     this.setState({ username: "", email: "", password: "" });
   };
 
-  componentDidUpdate(prevProps) {
-    console.log("prevProps", prevProps)
-    if (prevProps.userLoggedIn !== this.props.userLoggedIn) {
-      setTimeout(() => this.props.history.push("/"), 1500);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   console.log("prevProps", prevProps)
+  //   if (prevProps.userLoggedIn !== this.props.userLoggedIn) {
+  //     setTimeout(() => this.props.history.push("/"), 1500);
+  //   }
+  // }
 
   render() {
     return (

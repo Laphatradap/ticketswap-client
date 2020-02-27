@@ -7,6 +7,7 @@ import Home from "./components/Home"
 import EventsListContainer from "./components/EventsList"
 import TicketsListContainer from "./components/TicketsList"
 import TicketDetails from "./components/TicketDetails";
+import CreateEventContainer from "./components/CreateEvent"
 
 class App extends React.Component {
   // constructor(props) {
@@ -28,6 +29,8 @@ class App extends React.Component {
         <Router>
           <Route exact path="/" component={Home} />
           <Route exact path="/events" component={EventsListContainer} />
+          <Route exact path="/newEvent" component={CreateEventContainer} />
+
           <Route exact path="/events/:id" component={TicketsListContainer} />
           <Route exact path="/tickets/:id" component={TicketDetails} />
         </Router>

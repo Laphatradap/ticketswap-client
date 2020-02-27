@@ -27,6 +27,7 @@ export default function EventForm(props) {
           <input
             name="start_date"
             type="date"
+            min={Date.now()}
             value={props.values.start_date}
             onChange={props.onChange}
           />

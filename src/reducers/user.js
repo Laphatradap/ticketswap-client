@@ -1,6 +1,6 @@
 import { USER_CREATED, LOGIN_SUCCESS } from "../actions/users";
 
-const initialState = { userCreated: false,  token: null };
+const initialState = { userCreated: false,  token: null, email: null, id: null};
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
@@ -11,7 +11,7 @@ export default (state = initialState, action = {}) => {
     //   return { ...state, userCreationFailed: true}
 
     case LOGIN_SUCCESS:
-      return { ...state, token: action.payload.token };
+      return { ...state, token: action.payload.token, email: action.payload.email, id: action.payload.id };
 
     default:
       return state;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CreateEventFormContainer from "../CreateEvent"
+// import CreateEventFormContainer from "../CreateEvent"
 
 // export default function EventsList (props) {
 //   return (props.events.map(event =>
@@ -13,7 +13,9 @@ import CreateEventFormContainer from "../CreateEvent"
 export default props => (
   <div>
     <div>
-      <CreateEventFormContainer />
+      <Link to="/newEvent"><button>Add new event</button></Link>
+
+      {/* <CreateEventFormContainer /> */}
       <br></br>
     </div>
     <div>
