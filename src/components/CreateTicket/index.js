@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import EventForm from "./Eventform";
-import { createEvent } from "../../actions/events";
+import TicketForm from "./TicketForm";
+import { createTicket } from "../../actions/tickets";
 
-class CreateEventContainer extends React.PureComponent {
+class CreateTicketContainer extends React.PureComponent {
   state = {};
 
   onChange = event => {
@@ -13,20 +13,18 @@ class CreateEventContainer extends React.PureComponent {
   onSubmit = event => {
     event.preventDefault();
     this.setState({
-      name: "",
-      start_date: "",
-      end_date: "",
+      title: "",
       description: "",
+      price: "",
       imgUrl: ""
     });
-    this.props.createEvent(this.state); 
+    this.props.createTicket(this.state); 
   };
 
   render() {
     return (
       <div>
-        <h1>Create New Event</h1>
-        <EventForm
+        <TicketForm
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           values={this.state}
@@ -36,4 +34,4 @@ class CreateEventContainer extends React.PureComponent {
   }
 }
 
-export default connect(null, { createEvent })(CreateEventContainer);
+export default connect(null, { createTicket })(CreateTicketContainer);

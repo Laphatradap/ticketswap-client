@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CreateEventContainer from "../CreateEvent"
+import CreateEventFormContainer from "../CreateEvent"
+
 // export default function EventsList (props) {
 //   return (props.events.map(event =>
 //   <h1>{event.name}</h1>
@@ -11,18 +12,23 @@ import CreateEventContainer from "../CreateEvent"
 
 export default props => (
   <div>
-    {props.events.map(event => (
-      <div key={event.id}>
-        <img src={event.imgUrl} alt={event.name} />
-        <h1>{event.name}</h1>
-        <p>Description: {event.description}</p>
-        <p>Start Date: {event.start_date}</p>
-        <p>End Date: {event.end_date}</p>
-        <Link to={`/events/${event.id}`}><button>Check tickets</button></Link>
-      </div>
-    ))}
-    <br>
-    </br>
-    <CreateEventContainer />
+    <div>
+      <CreateEventFormContainer />
+      <br></br>
+    </div>
+    <div>
+      {props.events.events.map(event => (
+        <div key={event.id}>
+          <img src={event.imgUrl} alt={event.name} />
+          <h1>Event: {event.name}</h1>
+          <p>Description: {event.description}</p>
+          <p>Start Date: {event.start_date}</p>
+          <p>End Date: {event.end_date}</p>
+          <Link to={`/events/${event.id}`}>
+            <button>Check tickets</button>
+          </Link>
+        </div>
+      ))}
+    </div>
   </div>
 );

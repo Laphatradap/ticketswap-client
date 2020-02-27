@@ -8,7 +8,7 @@ export default (state = null, action) => {
     case EVENTS_FETCHED:
       // console.log("action", action)
       return action.payload;
-      
+
     case EVENT_CREATED:
       return [...state, action.payload];
 

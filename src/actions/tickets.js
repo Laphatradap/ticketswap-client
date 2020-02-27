@@ -1,79 +1,76 @@
-import request from 'superagent'
+import request from "superagent";
 
-export const TICKETS_FETCHED = 'TICKETS_FETCHED'
-export const TICKET_FETCHED = 'TICKET_FETCHED'
-// export const TICKET_DETAILS_FETCHED = 'TICKET_DETAILS_FETCHED'
+export const TICKETS_FETCHED = "TICKETS_FETCHED";
+export const TICKET_FETCHED = "TICKET_FETCHED";
+export const TICKET_CREATED = "TICKET_CREATED";
+export const TICKET_UPDATED = "TICKET_UPDATED";
 
-const baseUrl = 'http://localhost:4000'
+const baseUrl = "http://localhost:4000";
 
-//Fetch all tickets
-function ticketsFetched (tickets) {
+// Fetch all tickets
+function ticketsFetched(tickets) {
   return {
     type: TICKETS_FETCHED,
     payload: tickets
-  }
+  };
 }
 
 export const fetchTickets = () => (dispatch, getState) => {
-  if(getState().tickets) return;
+  if (getState().tickets) return;
   request(`${baseUrl}/tickets`)
     .then(res => {
-      // console.log("response body", res.body)
-      dispatch(ticketsFetched(res.body))
+      dispatch(ticketsFetched(res.body));
     })
-    .catch(console.error)
-}
+    .catch(console.error);
+};
 
-//Fetch one ticket
-function ticketFetched (ticket) {
+// Fetch a ticket
+function ticketFetched(ticket) {
   return {
     type: TICKET_FETCHED,
     payload: ticket
-  }
+  };
 }
 
 export const fetchTicket = id => (dispatch, getState) => {
-  if(getState().tickets) return;
+  if (getState().tickets) return;
   request(`${baseUrl}/tickets/${id}`)
     .then(res => {
       // console.log("response body", res.body)
-      dispatch(ticketFetched(res.body))
+      dispatch(ticketFetched(res.body));
     })
-    .catch(console.error)
+    .catch(console.error);
+};
+
+// Create a ticket
+function ticketCreated(ticket) {
+  return {
+    type: TICKET_CREATED,
+    payload: ticket
+  };
 }
+export const createTicket = data => dispatch => {
+  request
+    .post(`${baseUrl}/tickets`)
+    .send(data)
+    .then(res => {
+      dispatch(ticketCreated(res.body));
+    })
+    .catch(console.error);
+};
 
-//fetch ticket details
-// function ticketDetailsFetched (eventId, ticketId, userId) {
-//   return {
-//     type: TICKET_DETAILS_FETCHED,
-//     payload: Promise.all([eventId, ticketId, userId])
-//   }
-// }
+// Update the ticket
+const ticketUpdated = ticket => ({
+  type: TICKET_UPDATED,
+  payload: ticket
+});
 
-// export const fetchTicketDetails = (eventId, ticketId, userId) => (dispatch, getState) => {
-//   if(getState().tickets) return;
-//   request(`${baseUrl}/events/${eventId}/ticket/${ticketId}/user/${userId}`)
-//     .then(res => {
-//       console.log("response body", res.body)
-//       dispatch(ticketDetailsFetched(res.body))
-//     })
-//     .catch(console.error)
-// }
-
-// //try with req.query
-// function ticketDetailsFetched (ticket) {
-//     return {
-//       type: TICKET_DETAILS_FETCHED,
-//       payload: ticket
-//     }
-//   }
-  
-//   export const fetchTicketDetails = () => (dispatch, getState) => {
-//     if(getState().tickets) return;
-//     request(`${baseUrl}/tickets`)
-//       .then(res => {
-//         console.log("response body", res.body)
-//         dispatch(ticketDetailsFetched(res.body))
-//       })
-//       .catch(console.error)
-//   }
+export const updateTicket = (id, data) => dispatch => {
+  request
+    .put(`${baseUrl}/tickets/${id}`)
+    .send(data)
+    .then(res => {
+      dispatch(ticketUpdated(res.body));
+    })
+    .catch(console.error);
+};

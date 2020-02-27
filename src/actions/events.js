@@ -7,7 +7,7 @@ export const EVENT_UPDATED = 'EVENT_UPDATED'
 
 const baseUrl = 'http://localhost:4000'
 
-//Fetch all events
+// Fetch all events
 function eventsFetched(events) {
   return {
     type: EVENTS_FETCHED,
@@ -19,13 +19,12 @@ export const fetchEvents = () => (dispatch, getState) => {
   if(getState().events) return;
   request(`${baseUrl}/events`)
     .then(res => {
-      // console.log("response body", res.body)
       dispatch(eventsFetched(res.body))
     })
     .catch(console.error)
 }
 
-//fetch one event for EventDetailsContainer
+// Fetch an event for EventDetailsContainer
 function eventFetched(event) {
   return {
     type: EVENT_FETCHED,
@@ -35,13 +34,12 @@ function eventFetched(event) {
 export const fetchEvent = id => (dispatch, getState) => {
   request(`${baseUrl}/events/${id}`)
     .then(res => {
-      // console.log("one event", res.body)
       dispatch(eventFetched(res.body))
     })
     .catch(console.error)
 }
 
-//Create an event
+// Create an event
 function eventCreated(event) {
   return {
     type: EVENT_CREATED,
@@ -58,10 +56,10 @@ export const createEvent = (data) => (dispatch) => {
     .catch(console.error)
 }
 
-//update an event
+// Update an event
 const eventUpdated = event => ({
   type: EVENT_UPDATED,
-  event
+  payload: event
 })
 
 export const updateEvent = (id, data) => dispatch => {
