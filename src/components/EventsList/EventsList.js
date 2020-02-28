@@ -21,7 +21,7 @@ export default props => (
     <div>
       {props.events.events.map(event => (
         <div key={event.id}>
-          <img src={event.imgUrl} alt={event.name} />
+          <img src={event.imgUrl} alt={event.name} height="400" width="800"/>
           <h1>Event: {event.name}</h1>
           <p>Description: {event.description}</p>
           <p>Start Date: {event.start_date}</p>

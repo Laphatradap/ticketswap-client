@@ -6,7 +6,7 @@ import ReduxThunk from "redux-thunk";
 
 const persistConfig = {
   key: 'root',
-  blacklist: [ "user", "events", "event", "tickets" ],
+  blacklist: [ "events", "event", "tickets" ],
   storage
 }
 

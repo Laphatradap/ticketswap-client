@@ -11,7 +11,7 @@ export default function TicketsList(props) {
         <div key={ticket.id}>
           {/* <p>Seller: {ticket.sellerName}</p> */}
           <p>Price: {ticket.price} euro </p>
-          <img src={ticket.imgUrl} alt={ticket.description} />
+          <img src={ticket.imgUrl} alt={ticket.description} height="400" width="800" />
           <p>{ticket.description}</p>
             <Link to={`/tickets/${ticket.id}`}>
 
