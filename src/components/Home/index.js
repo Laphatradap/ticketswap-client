@@ -16,7 +16,7 @@ function Home(props) {
         </Link>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
-      </Router>
+      </Router> 
     </div>
   );
 }

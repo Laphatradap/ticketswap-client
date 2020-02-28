@@ -4,17 +4,20 @@ import EventForm from "./Eventform";
 import { createEvent } from "../../actions/events";
 
 class CreateEventContainer extends React.PureComponent {
-  // componentDidMount() {
-  //   this.props.dispatch(createEvent())
-  // }
-  // state = {
-  //   name: "",
-  //   start_date: "",
-  //   end_date: "",
-  //   description: "",
-  //   imgUrl: ""
-  // };
-  state = {};
+  componentDidMount = () => {
+    const isLoggedIn = this.props.user.token;
+    if (!isLoggedIn) {
+      this.props.history.push("/login");
+    }
+  };
+
+  state = {
+    name: "",
+    description: "",
+    imgUrl: "",
+    start_date: "",
+    end_date: ""
+  };
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -22,37 +25,32 @@ class CreateEventContainer extends React.PureComponent {
 
   onSubmit = event => {
     event.preventDefault();
-    this.setState({
-      name: "",
-      start_date: "",
-      end_date: "",
-      description: "",
-      imgUrl: ""
-    });
-    this.props.createEvent(this.state);
+    this.props.createEvent(
+      this.state.name,
+      this.state.description,
+      this.state.imgUrl,
+      this.state.start_date,
+      this.state.end_date
+    );
+    this.props.history.push("/events")
   };
 
   render() {
     return (
-      <div>       
-        {!this.props.userLoggedIn ? (
-          <h2>Please log in first</h2>
-        ) : (
-          <div>
-            <h1>Create New Event</h1>
-            <EventForm
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              values={this.props}
-            />
-          </div>
-        )}
+      <div>
+        <h1>Create New Event</h1>
+        <EventForm
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.props}
+        />
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
-  return { userLoggedIn: state.user.token !== null };
+  return { user: state.user };
 };
 
 export default connect(mapStateToProps, { createEvent })(CreateEventContainer);

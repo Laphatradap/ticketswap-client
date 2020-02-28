@@ -25,6 +25,7 @@ class LoginContainer extends Component {
       )
     );
     this.setState({ username: "", email: "", password: "" });
+    this.props.history.push("/events")
   };
 
   // componentDidUpdate(prevProps) {

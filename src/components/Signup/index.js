@@ -20,6 +20,8 @@ class SignupFormContainer extends Component {
     // console.log(this.state);
     this.props.dispatch(signUp(this.state.username, this.state.email, this.state.password));
     this.setState({ username: "", email: "", password: "" });
+    this.props.history.push("/login")
+
   };
 
   render() {
