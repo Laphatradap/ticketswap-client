@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import UserForm from "../UserForm";
 import { connect } from "react-redux";
 import { signUp } from "../../actions/users";
+import { Link } from "react-router-dom"
 
 class SignupFormContainer extends Component {
   state = {
+    username: "",
     email: "",
     password: ""
   };
@@ -16,8 +18,10 @@ class SignupFormContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     // console.log(this.state);
-    this.props.dispatch(signUp(this.state.email, this.state.password));
-    this.setState({ email: "", password: "" });
+    this.props.dispatch(signUp(this.state.username, this.state.email, this.state.password));
+    this.setState({ username: "", email: "", password: "" });
+    this.props.history.push("/login")
+
   };
 
   render() {
@@ -30,13 +34,14 @@ class SignupFormContainer extends Component {
           handleChange={this.handleChange}
           values={this.state}
         />
+        <Link to="/"><p>Back to Home</p></Link>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log("STATE IN MSTP", state);
+  // console.log("STATE IN MSTP", state);
   return {
     userCreated: state.user.userCreated
   };

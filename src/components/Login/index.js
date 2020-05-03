@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 class LoginContainer extends Component {
   state = {
+    username: "",
     email: "",
     password: ""
   };
@@ -15,17 +16,24 @@ class LoginContainer extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log(this.state);
-    // console.log("WHAT IS THIS PROPS DISPATCH", this.props.dispatch);
-    this.props.dispatch(login(this.state.email, this.state.password));
-    this.setState({ email: "", password: "" });
+    this.props.dispatch(
+      login(
+        this.state.username,
+        this.state.email,
+        this.state.password,
+        this.props.history
+      )
+    );
+    this.setState({ username: "", email: "", password: "" });
+    this.props.history.push("/events")
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.userLoggedIn !== this.props.userLoggedIn) {
-      setTimeout(() => this.props.history.push("/"), 1500);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   console.log("prevProps", prevProps)
+  //   if (prevProps.userLoggedIn !== this.props.userLoggedIn) {
+  //     setTimeout(() => this.props.history.push("/"), 1500);
+  //   }
+  // }
 
   render() {
     return (

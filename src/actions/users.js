@@ -8,13 +8,10 @@ function signUpSuccess() {
   return { type: USER_CREATED };
 }
 
-// function signUpFailure() {
-//   return { type: USER_NOT_CREATED}
-// }
-
-export function signUp(email, password) {
+export function signUp(username, email, password) {
   return async function(dispatch, getState) {
     const response = await axios.post("http://localhost:4000/user", {
+      username: username,
       email: email,
       password: password
     });
@@ -22,27 +19,29 @@ export function signUp(email, password) {
     if (response.status === 201) {
       dispatch(signUpSuccess());
     } 
-    // else if (response.status === 400) {
-    //   dispatch(signUpFailure())
-    // }
   };
 }
 
-function loginSuccess(token) {
+function loginSuccess(token, email, id) {
   return {
     type: LOGIN_SUCCESS,
-    payload: { token: token }
+    payload: { 
+      token: token,
+      email: email,
+      id: id
+    }
   };
 }
 
-export function login(email, password) {
+export function login(username, email, password, history) {
   return async function(dispatch, getState) {
-    console.log(email, password);
     const response = await axios.post("http://localhost:4000/login", {
+      username,
       email,
       password
     });
-
-    dispatch(loginSuccess(response.data.token));
+    dispatch(loginSuccess(response.data.token, response.data.email, response.data.id)
+    );
+    history.push("/events")
   };
 }

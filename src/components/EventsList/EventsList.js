@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import CreateEventFormContainer from "../CreateEvent"
 
 // export default function EventsList (props) {
 //   return (props.events.map(event =>
@@ -11,15 +12,25 @@ import { Link } from "react-router-dom";
 
 export default props => (
   <div>
-    {props.events.map(event => (
-      <div key={event.id}>
-        <img src={event.imgUrl} alt={event.name} />
-        <h1>{event.name}</h1>
-        <p>Description: {event.description}</p>
-        <p>Start Date: {event.start_date}</p>
-        <p>End Date: {event.end_date}</p>
-        <Link to={`/events/${event.id}`}><button>Check tickets</button></Link>
-      </div>
-    ))}
+    <div>
+      <Link to="/newEvent"><button>Add new event</button></Link>
+
+      {/* <CreateEventFormContainer /> */}
+      <br></br>
+    </div>
+    <div>
+      {props.events.events.map(event => (
+        <div key={event.id}>
+          <img src={event.imgUrl} alt={event.name} height="400" width="800"/>
+          <h1>Event: {event.name}</h1>
+          <p>Description: {event.description}</p>
+          <p>Start Date: {event.start_date}</p>
+          <p>End Date: {event.end_date}</p>
+          <Link to={`/events/${event.id}`}>
+            <button>Check tickets</button>
+          </Link>
+        </div>
+      ))}
+    </div>
   </div>
 );

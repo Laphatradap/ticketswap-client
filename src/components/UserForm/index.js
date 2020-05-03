@@ -6,6 +6,13 @@ const UserForm = props => {
     <div>
       {props.text}
       <form onSubmit={props.handleSubmit}>
+      <label>Username:</label>
+        <input
+          onChange={props.handleChange}
+          type="text"
+          name="username"
+          value={props.values.username}
+        />
         <label>Email:</label>
         <input
           onChange={props.handleChange}

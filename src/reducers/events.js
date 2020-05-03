@@ -7,9 +7,8 @@ export default (state = null, action) => {
   switch (action.type) {
     case EVENTS_FETCHED:
       // console.log("action", action)
-      return action.payload
-    
-      
+      return action.payload;
+
     default:
       return state;
   }

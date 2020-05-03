@@ -12,7 +12,7 @@ class TicketsListContainer extends React.Component {
     return event.map(e => (
       <Component 
         key={e.id}
-        id={e.id}
+        eventId={e.id}
         name={e.name}
         desc={e.description}
         startDate={e.start_date}
